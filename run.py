@@ -9,7 +9,7 @@ import config
 from pigeon.pigeon import PConf
 
 # app specific libraries
-from state import AppState
+from app_core import MyApp
 from MyRequestHandler import MyRequestHandler
 
 if __name__ == "__main__":
@@ -17,7 +17,7 @@ if __name__ == "__main__":
 	config = PConf("system.config", config.schema)
 
 	# state can store objects that get updated asyncronously and are needed everywhere
-	shared_system_state = AppState(config)
+	shared_system_state = MyApp(config)
 
 	# multiple request handlers, sharing the same state
 	tornado_app_config = tornado.web.Application([
