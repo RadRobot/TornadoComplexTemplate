@@ -1,14 +1,17 @@
-import app
+import app_core
 import tornado.web
 
 class MyRequestHandler(tornado.web.RequestHandler):
-	def initialize(self, config, state):
+	def initialize(self, config, app_state):
 		self.config = config
-		self.state = state
+		self.app_state = app_state
 
 	@tornado.web.asynchronous
 	def get(self):
-		"""POST handler"""
+		"""GET handler"""
+
+		self.write()
+		self.finish()
 
 	@tornado.web.asynchronous
 	def post(self):
@@ -16,7 +19,8 @@ class MyRequestHandler(tornado.web.RequestHandler):
 		post_data = self.request.body
 
 		try:
-			reply = app.do(post_data)
+			reply = app_core.do(post_data, self.app_state)
+
 			self.write(reply)
 			self.finish()
 		except:
