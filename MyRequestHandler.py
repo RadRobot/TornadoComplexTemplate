@@ -6,11 +6,11 @@ class MyRequestHandler(tornado.web.RequestHandler):
 		self.config = config
 		self.state = state
 
-	@tornado.web.asyncronous
+	@tornado.web.asynchronous
 	def get(self):
 		"""POST handler"""
 
-	@tornado.web.asyncronous
+	@tornado.web.asynchronous
 	def post(self):
 		"""POST handler"""
 		post_data = self.request.body
